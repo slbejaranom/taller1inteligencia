@@ -2,9 +2,9 @@
 clear, clc, close all
 X = [0,0;0,1;1,0;1,1];
 Y = [0,0,0,1];
-exps = zeros([100,10]);
+exps = zeros([1000,10]);
 for lr = 1:1:9
-    for j = 1:1:100
+    for j = 1:1:1000
         [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,lr/10);
         exps(j,lr) = iteraciones;
     end
@@ -28,9 +28,9 @@ X = [0,0,0;
      1,1,0;
      1,1,1];
 Y = [0,0,0,0,0,0,0,1];
-exps = zeros([100,10]);
+exps = zeros([1000,10]);
 for lr = 1:1:9
-    for j = 1:1:100
+    for j = 1:1:1000
         [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,lr/10);
         exps(j,lr) = iteraciones;
     end
@@ -62,10 +62,10 @@ X = [0,0,0,0;
      1,1,1,0;
      1,1,1,1];
 Y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1];
-exps = zeros([100,10]);
+exps = zeros([1000,10]);
 for lr = 1:1:9
-    for j = 1:1:100
-        [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,lr/10);
+    for j = 1:1:1000
+        [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,2,lr/10);
         exps(j,lr) = iteraciones;
     end
 end
@@ -81,8 +81,8 @@ end
 clear, clc, close all
 X = [0,0;0,1;1,0;1,1];
 Y = [0,1,1,1];
-exps = zeros([100,1]);
-for j = 1:1:100
+exps = zeros([1000,1]);
+for j = 1:1:1000
     [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,0.50);
     exps(j) = iteraciones;
 end
@@ -99,8 +99,8 @@ X = [0,0,0;
      1,1,0;
      1,1,1];
 Y = [0,1,1,1,1,1,1,1];
-exps = zeros([100,1]);
-for j = 1:1:100
+exps = zeros([1000,1]);
+for j = 1:1:1000
     [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,0.50);
     exps(j) = iteraciones;
 end
@@ -125,10 +125,18 @@ X = [0,0,0,0;
      1,1,1,0;
      1,1,1,1];
 Y = [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-exps = zeros([100,1]);
-for j = 1:1:100
-    [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,1,0.50);
-    exps(j) = iteraciones;
+exps = zeros([1000,10]);
+for lr = 1:1:9
+    for j = 1:1:1000
+        [pesos, polarizacion, iteraciones] = entrenamiento(X,Y,0.5,2,lr/10);
+        exps(j,lr) = iteraciones;
+    end
 end
 figure,
-histogram(exps);
+for lr = 1:1:9
+    subplot(3,3,lr);    
+    histogram(exps(:,lr),10);
+    title(strcat("Compuerta OR de 4 entradas con lr: ",num2str(lr/10)))
+    xlabel("Cantidad de iteraciones")
+    ylabel("Repeticiones")
+end
