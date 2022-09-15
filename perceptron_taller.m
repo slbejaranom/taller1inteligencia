@@ -4,6 +4,6 @@ function [salida] = perceptron_taller(entradas, pesos, polarizacion, umbral_step
 %   partir de dos entradas usando
 %   y = w1*x1 + w2*x2 + ... + wn*xn + w0
 %   Las entradas deben ir como vector y los pesos como vectors columna
-    salida = (entradas*pesos + polarizacion >= umbral_step)*1 + ...
-        (entradas*pesos + polarizacion < umbral_step)*0;
+    salida = (entradas*pesos + polarizacion >= umbral_step)*1.0 + ...
+        (entradas*pesos + polarizacion < umbral_step)*-1.0;
 end
