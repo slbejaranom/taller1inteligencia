@@ -14,6 +14,7 @@ function [pesos, polarizacion, iteraciones] = entrenamiento_con_errores(entradas
     iteraciones = 0;
     cantidad_aciertos = round(length(salidas)*(1-porcentaje_errores));
     while(aux < cantidad_aciertos)
+        aux = 0;
         for i = 1:1:cantidad_ejemplos
             x_temp = entradas(i,:);
             y = perceptron_taller(x_temp,pesos,polarizacion,umbral_step);        
@@ -33,12 +34,11 @@ function [pesos, polarizacion, iteraciones] = entrenamiento_con_errores(entradas
                         db = lr*(salidas(i)-y);
                 end        
                 pesos = pesos + dw';
-                polarizacion = polarizacion + db;
-                aux = 0;
-                iteraciones = iteraciones + 1
+                polarizacion = polarizacion + db;                
             else
                 aux = aux + 1;
             end    
-        end
+        end        
+        iteraciones = iteraciones + 1
     end
 end

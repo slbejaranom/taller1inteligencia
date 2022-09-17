@@ -60,7 +60,7 @@ exps = zeros([100,10]);
 for lr = 1:1:9
     for j = 1:1:10
         [pesos_rojo, polarizacion_rojo, iteraciones_rojo] = entrenamiento_con_errores(X_train_rojo,Y_train_rojo,0.5,2,lr/10,0.3);
-        exps(j,lr) = iteraciones;
+        exps(j,lr) = iteraciones_rojo;
     end
 end
 figure,
