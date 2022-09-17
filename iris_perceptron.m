@@ -59,7 +59,7 @@ Y_test_rojo = (iris_test10(:,5) == 3).*1.0 + (iris_test10(:,5) ~= 3).*-1.0;
 exps = zeros([100,10]);
 for lr = 1:1:9
     for j = 1:1:10
-        [pesos_rojo, polarizacion_rojo, iteraciones_rojo] = entrenamiento_con_errores(X_train_rojo,Y_train_rojo,0.5,2,lr/10,0.3);
+        [pesos_rojo, polarizacion_rojo, iteraciones_rojo] = entrenamiento_con_errores(X_train_rojo,Y_train_rojo,0.5,2,lr/10,0.1);
         exps(j,lr) = iteraciones_rojo;
     end
 end
